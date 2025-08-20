@@ -1,9 +1,17 @@
 import { FeatureCard } from "@/components/FeatureCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, HandCoins, Heart, Shield, Zap } from "lucide-react";
-
+import { signIn } from '@/lib/auth'
 
 export default function Home() {
+
+  async function heandleRegister(){
+    "use server"
+
+    await signIn("github", { redirectTo: "/dashboard" })
+  }
+
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-white to-gray-50">
       <header className="container mx-auto py-6 px-4">
@@ -33,7 +41,7 @@ export default function Home() {
               </p>
 
               <div className="pt-4">
-                <form>
+                <form action={heandleRegister}>
                   <Button
                     type="submit"
                     size="lg"
